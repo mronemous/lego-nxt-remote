@@ -1,0 +1,37 @@
+<div class="nxt-remote" ng-controller="RemoteCtrl">
+    <header>
+        <h1>Lego Nxt <small>Remote</small></h1>
+    </header>
+    <div class="video">
+        <small>VIDEO CAMERA - NOT IMPLEMENTED</small>
+    </div>
+    <div class="movement">
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4 text-center">
+            <button id="btnForward" class="btn btn-default btn-lg" ng-click="robot.forward(100)"><i class="glyphicon glyphicon-arrow-up"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 text-right">
+            <button id="btnLeft" class="btn btn-default btn-lg" ng-click="robot.left(75)"><i class="glyphicon glyphicon-arrow-left"></i></button>
+        </div>
+        <div class="col-xs-4 text-center">
+            <button id="btnStop" class="btn btn-default btn-lg" ng-click="robot.stop()"><i class="glyphicon glyphicon-stop"></i></button>
+        </div>
+        <div class="col-xs-4 text-left">
+            <button id="btnRight" class="btn btn-default btn-lg" ng-click="robot.right(75)"><i class="glyphicon glyphicon-arrow-right"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-4 text-center">
+            <button id="btnReverse" class="btn btn-default btn-lg" ng-click="robot.backward(100)"><i class="glyphicon glyphicon-arrow-down"></i></button>
+        </div>
+    </div>
+    </div>
+    <hr>
+    <footer class="btn-group btn-group-lg">
+        <button id="btnBeep" class="btn btn-default" ng-click="robot.beep()"><i class="glyphicon glyphicon-bell"></i></button>
+        <!--<button id="btnDance" class="btn btn-default" ng-click="robot.dance()"><i class="glyphicon glyphicon-music"></i></button>-->
+        <button id="btnConnect" class="btn btn-default" ng-class="{'btn-success': robot.isConnected, 'btn-danger': !robot.isConnected}" ng-click="connect()">Connect</button>
+    </footer>
+</div>

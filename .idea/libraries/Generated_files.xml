@@ -1,0 +1,52 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/app/scripts/lego.nxt/sonarSensor.js" />
+        <item url="file://$PROJECT_DIR$/app/scripts/lego.nxt/~.js" />
+        <item url="file://$PROJECT_DIR$/app/scripts/lego.nxt/command.js" />
+        <item url="file://$PROJECT_DIR$/app/scripts/lego.nxt/brick.js" />
+        <item url="file://$PROJECT_DIR$/com.mronemous.cordova.lego.nxt/www/motor.js" />
+        <item url="file://$PROJECT_DIR$/com.mronemous.cordova.lego.nxt/www/_.js" />
+        <item url="file://$PROJECT_DIR$/com.mronemous.cordova.lego.nxt/www/~.js" />
+        <item url="file://$PROJECT_DIR$/com.mronemous.cordova.lego.nxt/www/brick.js" />
+        <item url="file://$PROJECT_DIR$/app/scripts/lego.nxt/motor.js" />
+        <item url="file://$PROJECT_DIR$/app/scripts/services/robot.js" />
+        <item url="file://$PROJECT_DIR$/com.mronemous.cordova.lego.nxt/www/sonarSensor.js" />
+        <item url="file://$PROJECT_DIR$/app/scripts/lego.nxt/_.js" />
+        <item url="file://$PROJECT_DIR$/com.mronemous.cordova.lego.nxt/www/command.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/motor.js" />
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/command.js" />
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/brick.js" />
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/_.js" />
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/nxt.js" />
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/sonarSensor.js" />
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/~.js" />
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/motor.js" />
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/command.js" />
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/brick.js" />
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/_.js" />
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/nxt.js" />
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/sonarSensor.js" />
+      <root url="file://$PROJECT_DIR$/cordova/plugins/com.mronemous.cordova.lego.nxt/www/~.js" />
+      <root url="file://$PROJECT_DIR$/app/scripts/lego.nxt/sonarSensor.js" />
+      <root url="file://$PROJECT_DIR$/app/scripts/lego.nxt/~.js" />
+      <root url="file://$PROJECT_DIR$/app/scripts/lego.nxt/command.js" />
+      <root url="file://$PROJECT_DIR$/app/scripts/lego.nxt/brick.js" />
+      <root url="file://$PROJECT_DIR$/com.mronemous.cordova.lego.nxt/www/motor.js" />
+      <root url="file://$PROJECT_DIR$/com.mronemous.cordova.lego.nxt/www/_.js" />
+      <root url="file://$PROJECT_DIR$/com.mronemous.cordova.lego.nxt/www/~.js" />
+      <root url="file://$PROJECT_DIR$/com.mronemous.cordova.lego.nxt/www/brick.js" />
+      <root url="file://$PROJECT_DIR$/app/scripts/lego.nxt/motor.js" />
+      <root url="file://$PROJECT_DIR$/app/scripts/services/robot.js" />
+      <root url="file://$PROJECT_DIR$/com.mronemous.cordova.lego.nxt/www/sonarSensor.js" />
+      <root url="file://$PROJECT_DIR$/app/scripts/lego.nxt/_.js" />
+      <root url="file://$PROJECT_DIR$/com.mronemous.cordova.lego.nxt/www/command.js" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

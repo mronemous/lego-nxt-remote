@@ -1,0 +1,1 @@
+{"version":3,"file":"sensor.js","sourceRoot":"","sources":["sensor.ts"],"names":["Nxt","Nxt.Sensor","Nxt.Sensor.constructor","Nxt.Sensor.read"],"mappings":"AAAA,sCAAsC;AAEtC,IAAO,GAAG;AAoBT,CApBD,UAAO,GAAG;IAENA;QAQIC;QAEAC,CAACA;QAGDD,uBADuBA;gCACvBA;QAEAE,CAACA;QACLF;AAACA,IAADA,CAACA,IAAAD;IAhBDA,oBAgBCA;AAELA,CAACA,qBAAA"}
