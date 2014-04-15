@@ -1,6 +1,6 @@
 /// <reference path="connection.ts" />
 /// <reference path="motor.ts" />
-/// <reference path="sensor.ts" />
+/// <reference path="sensor/sensor.ts" />
 /// <reference path="command.ts" />
 
 module Nxt {
@@ -91,18 +91,57 @@ module Nxt {
             port4._port = 3;
         }
 
-
         constructor(){
             this._connection = new BluetoothConnection();
         }
 
         private _connected: boolean;
 
-        connect(macAddress: string, success, failure) {
-            var me = this;
+        init(success, fail) {
 
-            this._connection.connect(macAddress, success, function(error) {
-                me._connected = false;
+            var _fail = (error) => { fail(error); }
+
+            //TODO: Cleanup. Not 100% this has to be sequential.
+            this._initPort(this.port1, () => {
+
+                this._initPort(this.port2, () => {
+
+                        this._initPort(this.port3, () => {
+
+                                this._initPort(this.port4, () => {
+                                        success();
+                                    },
+                                    _fail);
+                            },
+                            _fail);
+                    },
+                    _fail);
+            },
+            _fail);
+        }
+
+        _initPort(port, success, fail) {
+            if(port != null) {
+                port.init(success, fail);
+            }
+            else {
+                success();
+            }
+        }
+
+        connect(macAddress: string, success, failure) {
+
+            this._connection.connect(macAddress, () => {
+
+                    this.init(() => {
+                        success();
+                    },
+                    (error) => {
+                        failure(error)
+                    });
+                },
+                (error) => {
+                this._connected = false;
                 failure(error);
             });
             this._connected = true;
@@ -119,12 +158,19 @@ module Nxt {
             return this._connected;
         }
 
-        beep(frequency: number = 523, duration: number = 500) {
+        playTone(frequency: number = 523, duration: number = 500) {
 
-            //TODO: Implement frequency and duration (last 4 indices)
-            var cmd = new Command([0x06, 0x00, Command.Types.Direct, 0x03, 0x0B, 0x02, 0xF4, 0x01]);
+            var freq = [];
+            freq[0] = frequency & 0xff;
+            freq[1] = (frequency >> 8) & 0xff;
 
-            this._connection.writeBinary(cmd.toArrayBuffer(), function() {}, function(error) { alert(error); });
+            var dur = [];
+            dur[0] = duration & 0xff;
+            dur[1] = (duration >> 8) & 0xff;
+
+            var cmd = new Command([Command.Types.Direct, Command.DirectOps.PlayTone, freq[0], freq[1], dur[0], dur[1]]);
+
+            this._connection.write(cmd, function() {}, function(error) { alert(error); });
         }
     }
 

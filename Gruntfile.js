@@ -22,12 +22,27 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      //dist: 'dist'
-      dist: 'cordova/www'
+      dist: './build/dist',
+      cordova: {
+        path: {
+          build: './build',
+          root: './build/cordova',
+          template: './cordova/template',
+          www: './build/cordova/www',
+          ios: './build/cordova/platforms/ios/www',
+          android: './build/cordova/platforms/android/assets/www'
+        },
+        name: 'Lego Nxt Remote',
+        folder: 'lego-nxt-remote',
+        namespace: 'mronemous.lego.nxt.remote'
+      }
     },
 
     exec: {
-          cordovaPrepare: { cwd: './cordova',cmd: 'cordova prepare' }
+      'cordova-create': { cwd: '<%= yeoman.cordova.path.build %>', cmd: 'cordova create "cordova" "<%= yeoman.cordova.namespace%>" "<%= yeoman.cordova.name%>"' },
+      'cordova-android': { cwd: '<%= yeoman.cordova.path.root %>', cmd: 'cordova platform add android' },
+      'cordova-ios': { cwd: '<%= yeoman.cordova.path.root %>', cmd: 'cordova platform add ios' },
+      'cordova-prepare': { cwd: '<%= yeoman.cordova.path.root %>', cmd: 'cordova prepare' }
     },
 
     typescript: {
@@ -61,46 +76,24 @@ module.exports = function (grunt) {
       all: {src: ["types/**/*.d.ts"], dest: "types/all.d.ts"}
     },
 
-    traceur_build: {
-      options: {
-          wrap: { // wraps the built files into a anonymous function that has
-              // a binds 'expression' to 'param'. In the example below:
-              // (function(exports) {
-              // })(window.mymodule = {});
-              param: 'exports',
-              expression: 'window.mymodule = {}'
-          },
-          sourceMaps: true,
-          deferredFunctions: true
-      },
-      project: {
-          cwd: 'cordova/plugins/com.mronemous.cordova.lego.nxt/www',
-          src: '**/*.es6',
-          dest: 'cordova/plugins/com.mronemous.cordova.lego.nxt/www/nxtt.js'
-      }
-    },
-
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       typescript_app: {
         files: ['<%= yeoman.app %>/scripts/**/*.ts'],
         tasks: ['typescript']
       },
-      typescript_plugin: {
-        files: ['cordova/plugins/com.mronemous.cordova.lego.nxt/www/**/*.ts'],
-        tasks: ['typescript']
-      },
       js: {
         files: ['{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all']
       },
+
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
+        tasks: ['compass:server', 'autoprefixer', 'copy:cordova-app']
       },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
@@ -171,22 +164,6 @@ module.exports = function (grunt) {
         },
         src: ['test/spec/{,*/}*.js']
       }
-    },
-
-    // Empties folders to start fresh
-    clean: {
-      dist: {
-        files: [{
-          dot: true,
-          src: [
-            '.tmp',
-            '<%= yeoman.dist %>/*',
-            '!<%= yeoman.dist %>/.git*',
-            '!<%= yeoman.dist %>/config.xml'
-          ]
-        }]
-      },
-      server: '.tmp'
     },
 
     // Add vendor prefixed styles
@@ -327,6 +304,39 @@ module.exports = function (grunt) {
       }
     },
 
+    // Empties folders to start fresh
+    clean: {
+      dist: {
+        files: [{
+          dot: true,
+          src: [
+            '.tmp',
+            '<%= yeoman.dist %>/*',
+            '!<%= yeoman.dist %>/.git*'
+          ]
+        }]
+      },
+      cordova: {
+        files: [{
+          dot: true,
+          src: [
+            '<%= yeoman.cordova.path.root %>/**',
+            '!<%= yeoman.cordova.path.root %>/.git*',
+            '!<%= yeoman.cordova.path.root %>/config.xml'
+          ]
+        }]
+      },
+      'cordova-www' : {
+        files: [{
+          dot: true,
+          src: [
+            '<%= yeoman.cordova.path.www %>/*',
+          ]
+        }]
+      },
+      server: '.tmp'
+    },
+
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -356,7 +366,64 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      'cordova-app': {
+        expand: true,
+        cwd: '.tmp/styles/',
+        dest: '<%= yeoman.app %>/styles',
+        src: '{,*/}*.css'
+      },
+      'cordova-plugin': {
+        expand: true,
+        cwd: '<%= yeoman.cordova.path.template %>/plugins',
+        dest: '<%= yeoman.cordova.path.root %>/plugins',
+        src: '**'
       }
+    },
+
+    symlink : {
+
+            options: {
+                overwrite : false
+            },
+
+            //HACK: cordova prepare doesn't seem to copy symlinks correctly, so we will copy them directly.
+            'cordova-app': {
+                files: [
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.app %>',
+                        dest: '<%= yeoman.cordova.path.android %>',
+                        src: "*"
+                    },
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.app %>',
+                        dest: '<%= yeoman.cordova.path.ios %>',
+                        src: "*"
+                    }
+                ]
+            },
+            'cordova-dist': {
+                files: [
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.dist %>',
+                        dest: '<%= yeoman.cordova.path.android %>',
+                        src: "*"
+                    },
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.dist %>',
+                        dest: '<%= yeoman.cordova.path.ios %>',
+                        src: "*"
+                    }
+                ]
+            }
     },
 
     // Run some tasks in parallel to speed up the build process
@@ -421,10 +488,9 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'typescript',
-    //'traceur_build',
     'useminPrepare',
     'concurrent:dist',
-    'autoprefixer',
+    ////'autoprefixer',
     'concat',
     'ngmin',
     'copy:dist',
@@ -432,8 +498,25 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     //'rev',
-    'usemin',
-    'exec:cordovaPrepare'
+    'usemin'//,
+    //'exec:cordovaPrepare'
+  ]);
+
+  //Create cordova project wrapper
+  grunt.registerTask('create:cordova', [
+    'clean:cordova',
+    'exec:cordova-create',
+    //clear the default www.
+    'clean:cordova-www',
+    //copy the local template plugins
+    'copy:cordova-plugin',
+    'exec:cordova-android',
+    'exec:cordova-ios',
+    //prepare will setup the metadata plugin js
+    'exec:cordova-prepare',
+    'compass:dist',
+    'copy:cordova-app',
+    'symlink:cordova-app'
   ]);
 
   grunt.registerTask('default', [

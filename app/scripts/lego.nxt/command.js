@@ -55,7 +55,12 @@ var Nxt;
         }
         */
         Command.prototype.toArrayBuffer = function () {
-            //alert(this._bytes.toString());
+            /*
+            var result = [];
+            var length = this._bytes.length;
+            result.push(length);
+            result.push(length);
+            */
             console.log("NXT " + this._bytes.toString());
 
             return new Uint8Array(this._bytes).buffer;

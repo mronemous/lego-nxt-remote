@@ -142,6 +142,7 @@ var Nxt;
             //TODO: Implement frequency and duration (last 4 indices)
             var cmd = new Nxt.Command([0x06, 0x00, Nxt.Command.Types.Direct, 0x03, 0x0B, 0x02, 0xF4, 0x01]);
 
+            //var cmd = new Command([Command.Types.Direct, 0x03, 0x0B, 0x02, 0xF4, 0x01]);
             this._connection.writeBinary(cmd.toArrayBuffer(), function () {
             }, function (error) {
                 alert(error);

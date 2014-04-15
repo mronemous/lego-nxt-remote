@@ -29,3 +29,21 @@ body {
   width: 100%;
   height: 100%;
 }
+
+/* Removes the focus ring - android 4.4+ */
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+/* [Bootstrap] Removes focus ring */
+:focus, select:focus, input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus, .btn:focus {
+  outline: 0;
+}
+
+/*
+.btn:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+*/
+

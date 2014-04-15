@@ -1,0 +1,92 @@
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/\/Users\/mronemous\/Documents\/Workspace\/Git\/mronemous\/lego-nxt-remote\/app\/styles\/remote\.scss;
+  }
+
+  line {
+    font-family: \000031;
+  }
+}
+
+.nxt-remote {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/\/Users\/mronemous\/Documents\/Workspace\/Git\/mronemous\/lego-nxt-remote\/app\/styles\/remote\.scss;
+  }
+
+  line {
+    font-family: \0000311;
+  }
+}
+
+.nxt-remote .sensor {
+  height: 8%;
+  width: 100%;
+  border-top: solid 1px silver;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/\/Users\/mronemous\/Documents\/Workspace\/Git\/mronemous\/lego-nxt-remote\/app\/styles\/remote\.scss;
+  }
+
+  line {
+    font-family: \0000317;
+  }
+}
+
+.nxt-remote .sensor .warning {
+  color: red;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/\/Users\/mronemous\/Documents\/Workspace\/Git\/mronemous\/lego-nxt-remote\/app\/styles\/remote\.scss;
+  }
+
+  line {
+    font-family: \0000321;
+  }
+}
+
+.nxt-remote .video {
+  text-align: center;
+  height: 40%;
+  width: 100%;
+  border: solid 1px silver;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/\/Users\/mronemous\/Documents\/Workspace\/Git\/mronemous\/lego-nxt-remote\/app\/styles\/remote\.scss;
+  }
+
+  line {
+    font-family: \0000328;
+  }
+}
+
+.nxt-remote .movement {
+  height: 29%;
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+@media -sass-debug-info {
+  filename {
+    font-family: file\:\/\/\/Users\/mronemous\/Documents\/Workspace\/Git\/mronemous\/lego-nxt-remote\/app\/styles\/remote\.scss;
+  }
+
+  line {
+    font-family: \0000334;
+  }
+}
+
+.nxt-remote .movement .row {
+  padding-top: 2%;
+}

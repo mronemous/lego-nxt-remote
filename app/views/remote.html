@@ -2,6 +2,24 @@
     <header>
         <h1>Lego Nxt <small>Remote</small></h1>
     </header>
+    <div class="sensor">
+        <div class="col-xs-3">
+            <div>{{robot.sonarFront.name}}</div>
+            <div ng-class="{'warning': robot.sonarFront.reading.distance <= robot.collisionDistance, '': robot.sonarFront.reading.distance > robot.collisionDistance}">{{robot.sonarFront.reading.distance}}</div>
+        </div>
+        <div class="col-xs-3">
+            <div>{{robot.sonarBack.name}}</div>
+            <div ng-class="{'warning': robot.sonarBack.reading.distance <= robot.collisionDistance, '': robot.sonarBack.reading.distance > robot.collisionDistance}">{{robot.sonarBack.reading.distance}}</div>
+        </div>
+        <div class="col-xs-3">
+            <div>{{robot.compass.name}}</div>
+            <div>{{robot.compass.reading.degrees}}</div>
+        </div>
+        <div class="col-xs-3">
+            <div>{{robot.touch.name}}</div>
+            <div>{{robot.touch.reading.pressed}}</div>
+        </div>
+    </div>
     <div class="video">
         <small>VIDEO CAMERA - NOT IMPLEMENTED</small>
     </div>
@@ -28,10 +46,12 @@
         </div>
     </div>
     </div>
-    <hr/>
     <footer class="btn-group btn-group-lg">
-        <button id="btnBeep" class="btn btn-default" ng-click="robot.beep()"><i class="glyphicon glyphicon-bell"></i></button>
-        <!--<button id="btnDance" class="btn btn-default" ng-click="robot.dance()"><i class="glyphicon glyphicon-music"></i></button>-->
-        <button id="btnConnect" class="btn btn-default" ng-class="{'btn-success': robot.isConnected, 'btn-danger': !robot.isConnected}" ng-click="connect()">Connect</button>
+
+        <button class="btn btn-default" ng-class="{'btn-info': robot.voiceListener, '': !robot.voiceListener}" ng-click="robot.toggleVoice()"><i class="glyphicon glyphicon-volume-up"></i></button>
+        <button class="btn btn-default" ng-class="{'btn-info': robot.tiltListener, '': !robot.tiltListener}" ng-click="robot.toggleTilt()"><i class="glyphicon glyphicon-fullscreen"></i></button>
+        <button class="btn btn-default" ng-click="robot.sing()"><i class="glyphicon glyphicon-music"></i></button>
+
+        <button id="btnConnect" class="btn btn-default" ng-class="{'btn-success': robot.isConnected, 'btn-danger': !robot.isConnected}" ng-click="robot.toggleConnect()">Connect</button>
     </footer>
 </div>

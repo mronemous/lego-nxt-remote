@@ -5,6 +5,7 @@ angular.module('legoNxtRemoteApp')
 
         $scope.robot = robotModel;
 
+        /*
         $scope.connect = function() {
 
             //TODO: Getting error here $apply already in progress - research how to resolve.
@@ -20,4 +21,5 @@ angular.module('legoNxtRemoteApp')
                 robotModel.disconnect(done);
             }
         }
+        */
   });
