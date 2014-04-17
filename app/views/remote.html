@@ -48,10 +48,10 @@
     </div>
     <footer class="btn-group btn-group-lg">
 
-        <button class="btn btn-default" ng-class="{'btn-info': robot.voiceListener, '': !robot.voiceListener}" ng-click="robot.toggleVoice()"><i class="glyphicon glyphicon-volume-up"></i></button>
-        <button class="btn btn-default" ng-class="{'btn-info': robot.tiltListener, '': !robot.tiltListener}" ng-click="robot.toggleTilt()"><i class="glyphicon glyphicon-fullscreen"></i></button>
-        <button class="btn btn-default" ng-click="robot.sing()"><i class="glyphicon glyphicon-music"></i></button>
+        <button class="btn btn-default" ng-class="{'btn-info': voiceListener, '': !voiceListener}" ng-click="toggleVoice()"><i class="glyphicon glyphicon-volume-up"></i></button>
+        <button class="btn btn-default" ng-class="{'btn-info': tiltListener, '': !tiltListener}" ng-click="toggleTilt()"><i class="glyphicon glyphicon-fullscreen"></i></button>
+        <button class="btn btn-default" ng-click="sing()"><i class="glyphicon glyphicon-music"></i></button>
 
-        <button id="btnConnect" class="btn btn-default" ng-class="{'btn-success': robot.isConnected, 'btn-danger': !robot.isConnected}" ng-click="robot.toggleConnect()">Connect</button>
+        <button id="btnConnect" class="btn btn-default" ng-class="{'btn-success': robot.isConnected, 'btn-danger': !robot.isConnected}" ng-click="toggleConnect()">Connect</button>
     </footer>
 </div>

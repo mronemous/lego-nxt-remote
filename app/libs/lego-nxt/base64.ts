@@ -3,7 +3,6 @@ module Nxt {
     export class Base64 {
 
         public static decode(base64) {
-
             return Base64.base64DecToArr(base64, false);
         }
 

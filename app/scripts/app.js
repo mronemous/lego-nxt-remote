@@ -1,5 +1,7 @@
 'use strict';
 
+var LOG_ID = "legoNxtRemoteApp";
+
 angular.module('legoNxtRemoteApp', [
   'ngCookies',
   'ngResource',

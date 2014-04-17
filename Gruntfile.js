@@ -48,9 +48,9 @@ module.exports = function (grunt) {
     typescript: {
         app: {
             src: [
-                '<%= yeoman.app %>/scripts/**/*.ts',
+                '<%= yeoman.app %>/scripts/models/**/*.ts', '!<%= yeoman.app %>/scripts/models/**/*.d.ts'
             ],
-            dest: '<%= yeoman.app %>/scripts/scripts.js',
+            dest: '<%= yeoman.app %>/scripts/models/build/models.js',
             options: {
                 sourcemap: true,
                 target: "ES5"
@@ -59,12 +59,13 @@ module.exports = function (grunt) {
 
         nxt: {
           src: [
-              'app/scripts/lego.nxt/**/*.ts'
+              '<%= yeoman.app %>/libs/lego-nxt/**/*.ts', '!<%= yeoman.app %>/libs/lego-nxt/**/*.d.ts'
           ],
-          dest: 'app/scripts/lego.nxt/nxt.js',
+          dest: '<%= yeoman.app %>/libs/lego-nxt/build/lego-nxt.js',
           options: {
               sourcemap: true,
-              target: "ES5"
+              target: "ES5",
+              declaration: true
           }
         }
     },
@@ -79,7 +80,7 @@ module.exports = function (grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       typescript_app: {
-        files: ['<%= yeoman.app %>/scripts/**/*.ts'],
+        files: ['<%= yeoman.app %>/libs/**/*.ts', '<%= yeoman.app %>/scripts/models/**/*.ts'],
         tasks: ['typescript']
       },
       js: {
