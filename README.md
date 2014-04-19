@@ -7,9 +7,12 @@ The primary purpose of this project is to help teach children how to program.  T
 
 To setup the project run the following commands:
 
-$npm install
-$bower install
-$grunt create:cordova
+```bash
+git clone git://github.com/mronemous/lego-nxt-remote.git && cd lego-nxt-remote
+npm install
+bower install
+grunt create:cordova
+```
 
 Import the android project (/build/cordova/platforms/android) with your favorite IDE.
 
