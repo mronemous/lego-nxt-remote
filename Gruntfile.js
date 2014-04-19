@@ -29,10 +29,16 @@ module.exports = function (grunt) {
           root: './build/cordova',
           template: './cordova/template',
           www: './build/cordova/www',
-          ios: './build/cordova/platforms/ios/www',
-          android: './build/cordova/platforms/android/assets/www'
+          ios: {
+            root: './build/cordova/platforms/ios',
+            www: '<%= yeoman.cordova.path.ios.root %>/www'
+          },
+          android: {
+            root: './build/cordova/platforms/android',
+            www: '<%= yeoman.cordova.path.android.root %>/assets/www'
+          }
         },
-        name: 'Lego Nxt Remote',
+        name: 'LegoNxtRemote',
         folder: 'lego-nxt-remote',
         namespace: 'mronemous.lego.nxt.remote'
       }
@@ -46,17 +52,6 @@ module.exports = function (grunt) {
     },
 
     typescript: {
-        app: {
-            src: [
-                '<%= yeoman.app %>/scripts/models/**/*.ts', '!<%= yeoman.app %>/scripts/models/**/*.d.ts'
-            ],
-            dest: '<%= yeoman.app %>/scripts/models/build/models.js',
-            options: {
-                sourcemap: true,
-                target: "ES5"
-            }
-        },
-
         nxt: {
           src: [
               '<%= yeoman.app %>/libs/lego-nxt/**/*.ts', '!<%= yeoman.app %>/libs/lego-nxt/**/*.d.ts'
@@ -67,6 +62,16 @@ module.exports = function (grunt) {
               target: "ES5",
               declaration: true
           }
+        },
+        app: {
+            src: [
+                '<%= yeoman.app %>/scripts/models/**/*.ts', '!<%= yeoman.app %>/scripts/models/**/*.d.ts'
+            ],
+            dest: '<%= yeoman.app %>/scripts/models/build/models.js',
+            options: {
+                sourcemap: true,
+                target: "ES5"
+            }
         }
     },
     "tpm-install": {
@@ -335,6 +340,15 @@ module.exports = function (grunt) {
           ]
         }]
       },
+      'cordova-android' : {
+        files: [{
+          dot: true,
+          src: [
+            '<%= yeoman.cordova.path.android.root %>/AndroidManifest.xml',
+            '<%= yeoman.cordova.path.android.root %>/res'
+          ]
+        }]
+      },
       server: '.tmp'
     },
 
@@ -379,6 +393,12 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.cordova.path.template %>/plugins',
         dest: '<%= yeoman.cordova.path.root %>/plugins',
         src: '**'
+      },
+      //Ensures that the build folder is created.
+      'cordova-readme': {
+          files:[
+              { src: ['<%= yeoman.cordova.path.template%>/readme.txt'], dest: '<%= yeoman.cordova.path.build%>/readme.txt'}
+          ]
       }
     },
 
@@ -391,28 +411,40 @@ module.exports = function (grunt) {
             //HACK: cordova prepare doesn't seem to copy symlinks correctly, so we will copy them directly.
             'cordova-app': {
                 files: [
+                    //Copy customized android files
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.cordova.path.template %>/android',
+                        dest: '<%= yeoman.cordova.path.android.root %>',
+                        src: [
+                          'AndroidManifest.xml',
+                          'res'
+                        ]
+                    },
                     {
                         expand: true,
                         dot: true,
                         cwd: '<%= yeoman.app %>',
-                        dest: '<%= yeoman.cordova.path.android %>',
+                        dest: '<%= yeoman.cordova.path.android.www %>',
                         src: "*"
                     },
                     {
                         expand: true,
                         dot: true,
                         cwd: '<%= yeoman.app %>',
-                        dest: '<%= yeoman.cordova.path.ios %>',
+                        dest: '<%= yeoman.cordova.path.ios.www %>',
                         src: "*"
                     }
                 ]
             },
             'cordova-dist': {
                 files: [
+                    //Copy customized android files
                     {
                         expand: true,
                         dot: true,
-                        cwd: '<%= yeoman.dist %>',
+                        cwd: '<%= yeoman.cordova.path.template %>/android',
                         dest: '<%= yeoman.cordova.path.android %>',
                         src: "*"
                     },
@@ -420,7 +452,14 @@ module.exports = function (grunt) {
                         expand: true,
                         dot: true,
                         cwd: '<%= yeoman.dist %>',
-                        dest: '<%= yeoman.cordova.path.ios %>',
+                        dest: '<%= yeoman.cordova.path.android.www %>',
+                        src: "*"
+                    },
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: '<%= yeoman.dist %>',
+                        dest: '<%= yeoman.cordova.path.ios.www %>',
                         src: "*"
                     }
                 ]
@@ -486,6 +525,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('typescript-tpm');
   grunt.registerTask("typescript-tpm", ['tpm-install', 'tpm-index'])
 
+  //TODO: Add cordova build support
+
   grunt.registerTask('build', [
     'clean:dist',
     'typescript',
@@ -505,6 +546,7 @@ module.exports = function (grunt) {
 
   //Create cordova project wrapper
   grunt.registerTask('create:cordova', [
+    'copy:cordova-readme',
     'clean:cordova',
     'exec:cordova-create',
     //clear the default www.
@@ -516,6 +558,9 @@ module.exports = function (grunt) {
     //prepare will setup the metadata plugin js
     'exec:cordova-prepare',
     'compass:dist',
+    'typescript',
+    //Remove root files that will be overwritten with symlinks
+    'clean:cordova-android',
     'copy:cordova-app',
     'symlink:cordova-app'
   ]);

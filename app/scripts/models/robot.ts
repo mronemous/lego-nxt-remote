@@ -211,22 +211,10 @@ module NxtRemote {
 
             var successSonarBack = (reading) => {
 
-                /*
-                 if(reading.distance <= me.collisionDistance) {
-                 this.stop();
-                 }
-                 */
-
                 this.compass.read(Nxt.CompassSensor.Registers.Degree, successCompass, successCompass);
             };
 
             var successSonarFront = (reading) => {
-
-                /*
-                 if(reading.distance <= me.collisionDistance) {
-                 this.stop();
-                 }
-                 */
 
                 this.sonarBack.read(Nxt.SonarSensor.Registers.Result1, successSonarBack, successSonarBack);
             };
