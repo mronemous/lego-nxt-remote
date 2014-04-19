@@ -5,11 +5,11 @@
     <div class="sensor">
         <div class="col-xs-3">
             <div>{{robot.sonarFront.name}}</div>
-            <div ng-class="{'warning': robot.sonarFront.reading.distance <= robot.collisionDistance, '': robot.sonarFront.reading.distance > robot.collisionDistance}">{{robot.sonarFront.reading.distance}}</div>
+            <div ng-class="{'warning': robot.sonarFront.reading.distance <= robot.collisionDistance, '': robot.sonarFront.reading.distance > robot.collisionDistance}">{{robot.sonarFront.reading.distance == 255 ? '-' : robot.sonarFront.reading.distance}}</div>
         </div>
         <div class="col-xs-3">
             <div>{{robot.sonarBack.name}}</div>
-            <div ng-class="{'warning': robot.sonarBack.reading.distance <= robot.collisionDistance, '': robot.sonarBack.reading.distance > robot.collisionDistance}">{{robot.sonarBack.reading.distance}}</div>
+            <div ng-class="{'warning': robot.sonarBack.reading.distance <= robot.collisionDistance, '': robot.sonarBack.reading.distance > robot.collisionDistance}">{{robot.sonarBack.reading.distance == 255 ? '-' : robot.sonarBack.reading.distance}}</div>
         </div>
         <div class="col-xs-3">
             <div>{{robot.compass.name}}</div>
