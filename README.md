@@ -25,7 +25,7 @@ grunt serve
 TODO: grunt build currently only handles web code.  Ideally it would allow release / debug configurations to create platform artifacts.
 
 
-API Example
+API Documentation
 ===============
 
 
