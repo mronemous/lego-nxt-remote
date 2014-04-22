@@ -40,24 +40,24 @@ var driveR = new Nxt.Motor();
 var cameraLift = new Nxt.Motor();
 
 var sonarFront = new Nxt.SonarSensor();
-var sonarFront.name = "Front";
+sonarFront.name = "Front";
 
 var sonarBack = new Nxt.SonarSensor();
-var sonarBack.name = "Back";
+sonarBack.name = "Back";
 
 var compass = new Nxt.CompassSensor();
-var compass.name = "Heading";
+compass.name = "Heading";
 
 var touch = new Nxt.TouchSensor();
-var touch.name = "Pressed";
+touch.name = "Pressed";
 
-var brick.portA = driveL;
-var brick.portB = cameraLift;
-var brick.portC = driveR;
-var brick.port1 = sonarFront;
-var brick.port2 = touch;
-var brick.port3 = sonarBack;
-var brick.port4 = compass;
+brick.portA = driveL;
+brick.portB = cameraLift;
+brick.portC = driveR;
+brick.port1 = sonarFront;
+brick.port2 = touch;
+brick.port3 = sonarBack;
+brick.port4 = compass;
 </pre>
 
 Connect to Brick
